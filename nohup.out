@@ -1,0 +1,141 @@
+[INFO] Scanning for projects...
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building questionnaire 0.0.1-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] >>> spring-boot-maven-plugin:2.3.0.RELEASE:run (default-cli) > test-compile @ questionnaire >>>
+[INFO] 
+[INFO] --- maven-resources-plugin:3.1.0:resources (default-resources) @ questionnaire ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 1 resource
+[INFO] Copying 0 resource
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.8.1:compile (default-compile) @ questionnaire ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 26 source files to /root/questionnaire/questionnaireBackEnd/target/classes
+[INFO] 
+[INFO] --- maven-resources-plugin:3.1.0:testResources (default-testResources) @ questionnaire ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /root/questionnaire/questionnaireBackEnd/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.8.1:testCompile (default-testCompile) @ questionnaire ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 1 source file to /root/questionnaire/questionnaireBackEnd/target/test-classes
+[INFO] 
+[INFO] <<< spring-boot-maven-plugin:2.3.0.RELEASE:run (default-cli) < test-compile @ questionnaire <<<
+[INFO] 
+[INFO] --- spring-boot-maven-plugin:2.3.0.RELEASE:run (default-cli) @ questionnaire ---
+[INFO] Attaching agents: []
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v2.3.0.RELEASE)
+
+2020-07-04 12:17:46.957  INFO 29299 --- [  restartedMain] c.e.q.QuestionnaireApplication           : Starting QuestionnaireApplication with PID 29299 (/root/questionnaire/questionnaireBackEnd/target/classes started by root in /root/questionnaire/questionnaireBackEnd)
+2020-07-04 12:17:46.962  INFO 29299 --- [  restartedMain] c.e.q.QuestionnaireApplication           : No active profile set, falling back to default profiles: default
+2020-07-04 12:17:47.021  INFO 29299 --- [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-07-04 12:17:47.021  INFO 29299 --- [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-07-04 12:17:47.880  INFO 29299 --- [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2020-07-04 12:17:47.984  INFO 29299 --- [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 95ms. Found 5 JPA repository interfaces.
+2020-07-04 12:17:48.815  INFO 29299 --- [  restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-07-04 12:17:48.826  INFO 29299 --- [  restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-07-04 12:17:48.828  INFO 29299 --- [  restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.35]
+2020-07-04 12:17:48.916  INFO 29299 --- [  restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-07-04 12:17:48.916  INFO 29299 --- [  restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1895 ms
+2020-07-04 12:17:49.290  INFO 29299 --- [  restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-07-04 12:17:49.356  INFO 29299 --- [         task-1] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-07-04 12:17:49.450  WARN 29299 --- [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-07-04 12:17:49.454  INFO 29299 --- [         task-1] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.15.Final
+2020-07-04 12:17:49.735  INFO 29299 --- [         task-1] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-07-04 12:17:50.039  INFO 29299 --- [         task-1] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2020-07-04 12:17:50.606  INFO 29299 --- [         task-1] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2020-07-04 12:17:51.471  INFO 29299 --- [         task-1] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-07-04 12:17:51.479  INFO 29299 --- [         task-1] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-07-04 12:17:51.939  WARN 29299 --- [         task-2] o.s.b.d.a.OptionalLiveReloadServer       : Unable to start LiveReload server
+2020-07-04 12:17:51.990  INFO 29299 --- [  restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2020-07-04 12:17:52.239  INFO 29299 --- [  restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/css/**'], []
+2020-07-04 12:17:52.239  INFO 29299 --- [  restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/js/**'], []
+2020-07-04 12:17:52.239  INFO 29299 --- [  restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/index.html'], []
+2020-07-04 12:17:52.239  INFO 29299 --- [  restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/img/**'], []
+2020-07-04 12:17:52.239  INFO 29299 --- [  restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/fonts/**'], []
+2020-07-04 12:17:52.239  INFO 29299 --- [  restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/favicon.ico'], []
+2020-07-04 12:17:52.289  INFO 29299 --- [  restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@56304807, org.springframework.security.web.context.SecurityContextPersistenceFilter@66cd4c42, org.springframework.security.web.header.HeaderWriterFilter@29912fa7, org.springframework.security.web.authentication.logout.LogoutFilter@4da59130, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@2b731f99, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3b1f5ea5, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@78be258a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@658c1a8f, org.springframework.security.web.session.SessionManagementFilter@bd7fd22, org.springframework.security.web.access.ExceptionTranslationFilter@673aa0af, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@1a791c47]
+2020-07-04 12:17:52.369  INFO 29299 --- [  restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2020-07-04 12:17:52.376  INFO 29299 --- [  restartedMain] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories…
+2020-07-04 12:17:52.653  INFO 29299 --- [  restartedMain] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
+2020-07-04 12:17:52.666  INFO 29299 --- [  restartedMain] c.e.q.QuestionnaireApplication           : Started QuestionnaireApplication in 6.076 seconds (JVM running for 6.577)
+2020-07-04 12:17:55.775  INFO 29299 --- [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-07-04 12:17:55.777  INFO 29299 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-07-04 12:17:55.784  INFO 29299 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 7 ms
+Hibernate: select distinct user0_.user_id as user_id1_4_, user0_.create_time as create_t2_4_, user0_.email as email3_4_, user0_.last_login_time as last_log4_4_, user0_.password as password5_4_, user0_.phone_num as phone_nu6_4_, user0_.random_code as random_c7_4_, user0_.status as status8_4_, user0_.username as username9_4_ from user user0_ where user0_.username=?
+Hibernate: select questionna0_.questionnaire_id as question1_2_, questionna0_.create_time as create_t2_2_, questionna0_.description as descript3_2_, questionna0_.end_time as end_time4_2_, questionna0_.fill_count as fill_cou5_2_, questionna0_.start_time as start_ti6_2_, questionna0_.status as status7_2_, questionna0_.title as title8_2_, questionna0_.username as username9_2_ from questionnaire questionna0_ where questionna0_.username=?
+Hibernate: select distinct user0_.user_id as user_id1_4_, user0_.create_time as create_t2_4_, user0_.email as email3_4_, user0_.last_login_time as last_log4_4_, user0_.password as password5_4_, user0_.phone_num as phone_nu6_4_, user0_.random_code as random_c7_4_, user0_.status as status8_4_, user0_.username as username9_4_ from user user0_ where user0_.username=?
+Hibernate: select distinct user0_.user_id as user_id1_4_, user0_.create_time as create_t2_4_, user0_.email as email3_4_, user0_.last_login_time as last_log4_4_, user0_.password as password5_4_, user0_.phone_num as phone_nu6_4_, user0_.random_code as random_c7_4_, user0_.status as status8_4_, user0_.username as username9_4_ from user user0_ where user0_.username=?
+Hibernate: select distinct user0_.user_id as user_id1_4_, user0_.create_time as create_t2_4_, user0_.email as email3_4_, user0_.last_login_time as last_log4_4_, user0_.password as password5_4_, user0_.phone_num as phone_nu6_4_, user0_.random_code as random_c7_4_, user0_.status as status8_4_, user0_.username as username9_4_ from user user0_ where user0_.username=?
+Hibernate: select distinct user0_.user_id as user_id1_4_, user0_.create_time as create_t2_4_, user0_.email as email3_4_, user0_.last_login_time as last_log4_4_, user0_.password as password5_4_, user0_.phone_num as phone_nu6_4_, user0_.random_code as random_c7_4_, user0_.status as status8_4_, user0_.username as username9_4_ from user user0_ where user0_.username=?
+2020-07-04 12:18:22.480 ERROR 29299 --- [nio-8080-exec-7] w.a.UsernamePasswordAuthenticationFilter : An internal error occurred while trying to authenticate the user.
+
+org.springframework.security.authentication.InternalAuthenticationServiceException: UserDetailsService returned null, which is an interface contract violation
+	at org.springframework.security.authentication.dao.DaoAuthenticationProvider.retrieveUser(DaoAuthenticationProvider.java:110) ~[spring-security-core-5.3.2.RELEASE.jar:5.3.2.RELEASE]
+	at org.springframework.security.authentication.dao.AbstractUserDetailsAuthenticationProvider.authenticate(AbstractUserDetailsAuthenticationProvider.java:144) ~[spring-security-core-5.3.2.RELEASE.jar:5.3.2.RELEASE]
+	at org.springframework.security.authentication.ProviderManager.authenticate(ProviderManager.java:199) ~[spring-security-core-5.3.2.RELEASE.jar:5.3.2.RELEASE]
+	at org.springframework.security.authentication.ProviderManager.authenticate(ProviderManager.java:219) ~[spring-security-core-5.3.2.RELEASE.jar:5.3.2.RELEASE]
+	at org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter.attemptAuthentication(UsernamePasswordAuthenticationFilter.java:95) ~[spring-security-web-5.3.2.RELEASE.jar:5.3.2.RELEASE]
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:212) ~[spring-security-web-5.3.2.RELEASE.jar:5.3.2.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) [spring-security-web-5.3.2.RELEASE.jar:5.3.2.RELEASE]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116) [spring-security-web-5.3.2.RELEASE.jar:5.3.2.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) [spring-security-web-5.3.2.RELEASE.jar:5.3.2.RELEASE]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:92) [spring-security-web-5.3.2.RELEASE.jar:5.3.2.RELEASE]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:77) [spring-security-web-5.3.2.RELEASE.jar:5.3.2.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) [spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) [spring-security-web-5.3.2.RELEASE.jar:5.3.2.RELEASE]
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105) [spring-security-web-5.3.2.RELEASE.jar:5.3.2.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) [spring-security-web-5.3.2.RELEASE.jar:5.3.2.RELEASE]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:56) [spring-security-web-5.3.2.RELEASE.jar:5.3.2.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) [spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) [spring-security-web-5.3.2.RELEASE.jar:5.3.2.RELEASE]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215) [spring-security-web-5.3.2.RELEASE.jar:5.3.2.RELEASE]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178) [spring-security-web-5.3.2.RELEASE.jar:5.3.2.RELEASE]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:358) [spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:271) [spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [tomcat-embed-core-9.0.35.jar:9.0.35]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-9.0.35.jar:9.0.35]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) [spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) [spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [tomcat-embed-core-9.0.35.jar:9.0.35]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-9.0.35.jar:9.0.35]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) [spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) [spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [tomcat-embed-core-9.0.35.jar:9.0.35]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-9.0.35.jar:9.0.35]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) [spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) [spring-web-5.2.6.RELEASE.jar:5.2.6.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [tomcat-embed-core-9.0.35.jar:9.0.35]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-9.0.35.jar:9.0.35]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202) [tomcat-embed-core-9.0.35.jar:9.0.35]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) [tomcat-embed-core-9.0.35.jar:9.0.35]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541) [tomcat-embed-core-9.0.35.jar:9.0.35]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139) [tomcat-embed-core-9.0.35.jar:9.0.35]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) [tomcat-embed-core-9.0.35.jar:9.0.35]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) [tomcat-embed-core-9.0.35.jar:9.0.35]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) [tomcat-embed-core-9.0.35.jar:9.0.35]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:373) [tomcat-embed-core-9.0.35.jar:9.0.35]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) [tomcat-embed-core-9.0.35.jar:9.0.35]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868) [tomcat-embed-core-9.0.35.jar:9.0.35]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1590) [tomcat-embed-core-9.0.35.jar:9.0.35]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-9.0.35.jar:9.0.35]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [na:1.8.0_252]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [na:1.8.0_252]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-9.0.35.jar:9.0.35]
+	at java.lang.Thread.run(Thread.java:748) [na:1.8.0_252]
+
+Hibernate: select distinct user0_.user_id as user_id1_4_, user0_.create_time as create_t2_4_, user0_.email as email3_4_, user0_.last_login_time as last_log4_4_, user0_.password as password5_4_, user0_.phone_num as phone_nu6_4_, user0_.random_code as random_c7_4_, user0_.status as status8_4_, user0_.username as username9_4_ from user user0_ where user0_.username=?
+Hibernate: select distinct user0_.user_id as user_id1_4_, user0_.create_time as create_t2_4_, user0_.email as email3_4_, user0_.last_login_time as last_log4_4_, user0_.password as password5_4_, user0_.phone_num as phone_nu6_4_, user0_.random_code as random_c7_4_, user0_.status as status8_4_, user0_.username as username9_4_ from user user0_ where user0_.username=?
+Hibernate: insert into user (create_time, email, last_login_time, password, phone_num, random_code, status, username) values (?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: select distinct user0_.user_id as user_id1_4_, user0_.create_time as create_t2_4_, user0_.email as email3_4_, user0_.last_login_time as last_log4_4_, user0_.password as password5_4_, user0_.phone_num as phone_nu6_4_, user0_.random_code as random_c7_4_, user0_.status as status8_4_, user0_.username as username9_4_ from user user0_ where user0_.username=?
+Hibernate: select questionna0_.questionnaire_id as question1_2_, questionna0_.create_time as create_t2_2_, questionna0_.description as descript3_2_, questionna0_.end_time as end_time4_2_, questionna0_.fill_count as fill_cou5_2_, questionna0_.start_time as start_ti6_2_, questionna0_.status as status7_2_, questionna0_.title as title8_2_, questionna0_.username as username9_2_ from questionnaire questionna0_ where questionna0_.username=?
