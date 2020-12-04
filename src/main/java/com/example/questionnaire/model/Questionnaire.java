@@ -20,4 +20,5 @@ public class Questionnaire {
     private Integer fillCount;
     @Column(columnDefinition = "TEXT")
     private String description;
+    private Double score;
 }
