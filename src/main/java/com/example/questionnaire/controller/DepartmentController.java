@@ -2,6 +2,7 @@ package com.example.questionnaire.controller;
 
 import com.example.questionnaire.service.DepartmentService;
 import net.sf.json.JSONObject;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,17 +19,9 @@ public class DepartmentController {
     /**
      * 查询科室树形结构
      * */
-    @PostMapping("api/department/getDepartmentAll")
+    @GetMapping("api/department/getDepartmentAll")
     public JSONObject getDepartment() {
-        JSONObject jsonRes = new JSONObject();
-        List<Object> departmentList = departmentService.getAllDepartment();
-        if(departmentList != null){
-            jsonRes.put("success", true);
-            jsonRes.put("json", departmentList);
-        }else{
-            jsonRes.put("success", false);
-            jsonRes.put("msg", "查询出错！");
-        }
-        return jsonRes;
+        JSONObject departmentList = departmentService.getAllDepartment();
+        return departmentList;
     }
 }

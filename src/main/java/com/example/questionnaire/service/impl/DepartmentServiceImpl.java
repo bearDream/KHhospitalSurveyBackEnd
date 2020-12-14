@@ -26,10 +26,30 @@ public class DepartmentServiceImpl implements DepartmentService {
      * 查询科室返回树形结构
      * */
     @Override
-    public List<Object> getAllDepartment() {
-        List<Department> list = buildTree(departmentDao.findAll());
-        List<Object> menuList = menuTreeUtil.menuList(list);
-        return menuList;
+    public JSONObject getAllDepartment() {
+        JSONObject jsonRes = new JSONObject();
+        try {
+            List<Department> list = departmentDao.findAll();
+
+            if(list != null){
+                List<Object> menuList  = menuTreeUtil.menuList(list);
+                if(menuList != null){
+                    jsonRes.put("success", true);
+                    jsonRes.put("json", menuList);
+                }else{
+                    jsonRes.put("success", false);
+                    jsonRes.put("msg", "查询出错！");
+                }
+            }else{
+                jsonRes.put("success", false);
+                jsonRes.put("msg", "查询出错！");
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            jsonRes.put("success", false);
+            jsonRes.put("msg", "查询出错！" + e);
+        }
+        return jsonRes;
     }
 
     //将实体类，变成标准的树结构，即NewTree类型

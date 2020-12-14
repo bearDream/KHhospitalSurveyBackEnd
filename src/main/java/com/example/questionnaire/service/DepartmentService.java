@@ -8,5 +8,5 @@ import java.util.List;
 @Service
 public interface DepartmentService {
 
-    List<Object> getAllDepartment();
+    JSONObject getAllDepartment();
 }

@@ -15,41 +15,45 @@ import java.util.Map;
 public class MenuTreeUtil {
     //已经被buildTree的list集合
     private List<Department> menuCommon;
-    //返回给前端的NewTree List集合
-    private List<Object> list = new ArrayList<Object>();
 
     public List<Object> menuList(List<Department> menu){
+        //返回给前端的NewTree List集合
+        List<Object> list = new ArrayList<Object>();
         this.menuCommon = menu;
 
         // 通过遍历menu，找到父节点为0的节点，它是顶级父节点
         // 然后调用menuChild，递归遍历所有子节点
-        for (Department x : menu) {
+        for (int i = 0; i < menu.size(); i ++) {
             Map<String,Object> mapArr = new LinkedHashMap<String, Object>();
-            if(x.getParentId() == 0){
-                mapArr.put("id", x.getId());
-                mapArr.put("deptName", x.getDepName());
-                mapArr.put("parentId", x.getParentId());
+            if(menu.get(i).getParentId() == 0){
+                mapArr.put("id", menu.get(i).getId());
+                mapArr.put("deptName", menu.get(i).getDepName());
+                mapArr.put("parentId", menu.get(i).getParentId());
 
                 //遍历开始
-                mapArr.put("childList", menuChild(x.getId()));
+                mapArr.put("level", i + 1);
+                Integer level = 0;
+                level = i + 2;
+                mapArr.put("childList", menuChild(menu.get(i).getId(), level));
                 list.add(mapArr);
             }
         }
         return list;
     }
 
-    private List<?> menuChild(Integer id){
+    private List<?> menuChild(Integer id, Integer level){
         List<Object> lists = new ArrayList<Object>();
         //继续遍历menu
-        for(Department a:menuCommon){
+        for(int i = 0; i < menuCommon.size(); i++){
             Map<String,Object> childArray = new LinkedHashMap<String, Object>();
             //找到父ID等于父节点ID的子节点
-            if(a.getParentId().equals(id)){
-                childArray.put("id", a.getId());
-                childArray.put("deptName", a.getDepName());
-                childArray.put("parentId", a.getParentId());
+            if(menuCommon.get(i).getParentId().equals(id)){
+                childArray.put("id", menuCommon.get(i).getId());
+                childArray.put("deptName", menuCommon.get(i).getDepName());
+                childArray.put("parentId", menuCommon.get(i).getParentId());
                 //向下递归
-                childArray.put("childList", menuChild(a.getId()));
+                childArray.put("level", level);
+                childArray.put("childList", menuChild(menuCommon.get(i).getId(), level + 1));
                 lists.add(childArray);
             }
         }
