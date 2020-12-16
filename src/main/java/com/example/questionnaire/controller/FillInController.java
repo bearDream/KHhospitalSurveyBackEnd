@@ -1,5 +1,6 @@
 package com.example.questionnaire.controller;
 
+import com.example.questionnaire.service.AnswerScoreService;
 import com.example.questionnaire.service.CreateService;
 import com.example.questionnaire.service.FillInService;
 import com.google.gson.Gson;
@@ -23,6 +24,9 @@ public class FillInController {
     final
     Gson gson;
 
+    @Autowired
+    AnswerScoreService answerScoreService;
+
     public FillInController(CreateService createService, Gson gson, FillInService fillInService) {
         this.createService = createService;
         this.fillInService = fillInService;
@@ -40,6 +44,7 @@ public class FillInController {
         String ip = gson.fromJson(answer, JsonObject.class).get("ip").getAsString();
         if (!fillInService.checkAlreadySubmit(questionnaireId, ip))
             fillInService.submitAnswer(questionnaireId, answerListJson, ip);
+        answerScoreService.score(ip,questionnaireId);
         return "";
     }
 

@@ -16,4 +16,5 @@ public class QuestionnaireIp {
     private Integer id;
     private Integer questionnaireId;
     private String ip;
+    private Double score;
 }

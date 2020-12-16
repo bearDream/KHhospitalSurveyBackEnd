@@ -114,6 +114,7 @@ public class CreateServiceImpl implements CreateService {
             oneRes.addProperty("gradeMax", temp.get("gradeMax").getAsInt());
             oneRes.addProperty("date", temp.get("date").getAsString());
             oneRes.addProperty("textDescription", temp.get("textDescription").getAsString());
+            oneRes.add("questionOptionsScore",temp.get("questionOptionsScore").getAsJsonArray());
         }
 
     }
@@ -153,7 +154,7 @@ public class CreateServiceImpl implements CreateService {
 
     @Override
     public String saveOneQuestion(String question, Integer questionnaireId) {
-        JsonObject temp = gson.fromJson(question, JsonObject.class);;
+        JsonObject temp = gson.fromJson(question, JsonObject.class);
         saveOneQuestion(questionnaireId, temp);
         return null;
     }
