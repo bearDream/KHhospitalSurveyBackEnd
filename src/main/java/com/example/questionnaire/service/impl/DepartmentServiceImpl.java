@@ -4,6 +4,7 @@ import com.example.questionnaire.dao.DepartmentDao;
 import com.example.questionnaire.model.Department;
 import com.example.questionnaire.service.DepartmentService;
 import com.example.questionnaire.utils.MenuTreeUtil;
+import net.sf.json.JSON;
 import net.sf.json.JSONObject;
 import org.springframework.stereotype.Service;
 
@@ -63,5 +64,34 @@ public class DepartmentServiceImpl implements DepartmentService {
             newDepartments.add(newDepartment);
         }
         return newDepartments;
+    }
+
+    @Override
+    public void deleteById(Integer id) {
+        try {
+            departmentDao.deleteById(id);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public JSONObject addDepartment(Department department) {
+        JSONObject jsonRes = new JSONObject();
+        try {
+            departmentDao.save(department);
+            jsonRes.put("success", true);
+            jsonRes.put("msg", "增加成功！");
+        }catch (Exception e){
+            e.printStackTrace();
+            jsonRes.put("success", false);
+            jsonRes.put("msg", "增加失败" + e);
+        }
+        return jsonRes;
+    }
+
+    @Override
+    public int updateDepartment(Department department) {
+        return departmentDao.updateDepartment(department);
     }
 }

@@ -21,5 +21,6 @@ public class Department {
     private Integer id;
     private String depName;
     private Integer parentId;
+    private LocalDateTime createdTime;
     private LocalDateTime startTime;
 }

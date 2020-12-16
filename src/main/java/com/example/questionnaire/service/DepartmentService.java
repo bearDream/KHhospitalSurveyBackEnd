@@ -1,5 +1,6 @@
 package com.example.questionnaire.service;
 
+import com.example.questionnaire.model.Department;
 import net.sf.json.JSONObject;
 import org.springframework.stereotype.Service;
 
@@ -9,4 +10,10 @@ import java.util.List;
 public interface DepartmentService {
 
     JSONObject getAllDepartment();
+
+    void deleteById(Integer id);
+
+    JSONObject addDepartment(Department department);
+
+    int updateDepartment(Department department);
 }
