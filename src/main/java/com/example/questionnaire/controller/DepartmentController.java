@@ -40,8 +40,6 @@ public class DepartmentController {
         department.setCreatedTime(time);
         department.setStartTime(time);
         JSONObject jsonRes = departmentService.addDepartment(department);
-        JSONObject departmentList = departmentService.getAllDepartment();
-        jsonRes.put("depList", departmentList);
         return jsonRes;
     }
     /**
