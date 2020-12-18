@@ -79,7 +79,8 @@ public class DepartmentServiceImpl implements DepartmentService {
     public JSONObject addDepartment(Department department) {
         JSONObject jsonRes = new JSONObject();
         try {
-            departmentDao.save(department);
+            Department dep = departmentDao.save(department);
+            jsonRes.put("dep", dep);
             jsonRes.put("success", true);
             jsonRes.put("msg", "增加成功！");
         }catch (Exception e){
