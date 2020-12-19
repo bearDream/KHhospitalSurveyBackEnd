@@ -27,21 +27,21 @@ public class MenuTreeUtil {
             Map<String,Object> mapArr = new LinkedHashMap<String, Object>();
             if(menu.get(i).getParentId() == 0){
                 mapArr.put("id", menu.get(i).getId());
-                mapArr.put("deptName", menu.get(i).getDepName());
+                mapArr.put("depName", menu.get(i).getDepName());
                 mapArr.put("parentId", menu.get(i).getParentId());
 
                 //遍历开始
-                mapArr.put("level", i + 1);
-                Integer level = 0;
-                level = i + 2;
-                mapArr.put("childList", menuChild(menu.get(i).getId(), level));
+                //mapArr.put("level", i + 1);
+                //Integer level = 0;
+                //level = i + 2;
+                mapArr.put("childList", menuChild(menu.get(i).getId()));
                 list.add(mapArr);
             }
         }
         return list;
     }
 
-    private List<?> menuChild(Integer id, Integer level){
+    private List<?> menuChild(Integer id){
         List<Object> lists = new ArrayList<Object>();
         //继续遍历menu
         for(int i = 0; i < menuCommon.size(); i++){
@@ -49,11 +49,11 @@ public class MenuTreeUtil {
             //找到父ID等于父节点ID的子节点
             if(menuCommon.get(i).getParentId().equals(id)){
                 childArray.put("id", menuCommon.get(i).getId());
-                childArray.put("deptName", menuCommon.get(i).getDepName());
+                childArray.put("depName", menuCommon.get(i).getDepName());
                 childArray.put("parentId", menuCommon.get(i).getParentId());
                 //向下递归
-                childArray.put("level", level);
-                childArray.put("childList", menuChild(menuCommon.get(i).getId(), level + 1));
+                //childArray.put("level", level);
+                childArray.put("childList", menuChild(menuCommon.get(i).getId()));
                 lists.add(childArray);
             }
         }
