@@ -15,7 +15,7 @@ public interface DepartmentDao extends JpaRepository<Department, Integer> {
 
     List<Department> findAll();
 
-    void deleteById(Integer integer);
+    void deleteById(Integer id);
 
     @Override
     <S extends Department> S save(S s);
@@ -25,5 +25,8 @@ public interface DepartmentDao extends JpaRepository<Department, Integer> {
     @Query(value = "update department set dep_name = :#{#department.depName}, parent_id = :#{#department.parentId} where id = :#{#department.id}", nativeQuery = true)
     int updateDepartment(@Param("department") Department department);
 
+    List<Department> findAllByParentId(Integer parentId);
 
+    @Transactional
+    int removeByParentId(@Param("parentId") Integer parentId);
 }

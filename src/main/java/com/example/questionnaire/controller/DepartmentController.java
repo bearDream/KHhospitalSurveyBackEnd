@@ -47,17 +47,7 @@ public class DepartmentController {
      * */
     @PostMapping("api/department/deleteById")
     public JSONObject deleteById(@Param("id") Integer id){
-        JSONObject jsonRes = new JSONObject();
-        try {
-            departmentService.deleteById(id);
-            jsonRes.put("success", true);
-            jsonRes.put("msg", "删除成功！");
-        }catch (Exception e){
-            e.printStackTrace();
-            jsonRes.put("success", false);
-            jsonRes.put("msg", "删除失败" + e);
-        }
-        return jsonRes;
+        return departmentService.deleteById(id);
     }
 
     /**

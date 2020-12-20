@@ -11,7 +11,7 @@ public interface DepartmentService {
 
     JSONObject getAllDepartment();
 
-    void deleteById(Integer id);
+    JSONObject deleteById(Integer id);
 
     JSONObject addDepartment(Department department);
 

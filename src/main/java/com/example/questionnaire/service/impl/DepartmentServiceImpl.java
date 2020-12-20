@@ -67,12 +67,31 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public void deleteById(Integer id) {
+    public JSONObject deleteById(Integer id) {
+        JSONObject jsonRes = new JSONObject();
         try {
-            departmentDao.deleteById(id);
+            List<Department> list = departmentDao.findAllByParentId(id);
+            if(list != null && list.size() > 0){
+                int count = departmentDao.removeByParentId(id);
+                if(count > 0){
+                    departmentDao.deleteById(id);
+                    jsonRes.put("success", true);
+                    jsonRes.put("msg", "删除成功！");
+                }else{
+                    jsonRes.put("success", false);
+                    jsonRes.put("msg", "删除失败!" );
+                }
+            }else{
+                departmentDao.deleteById(id);
+                jsonRes.put("success", true);
+                jsonRes.put("msg", "删除成功！");
+            }
         }catch (Exception e){
             e.printStackTrace();
+            jsonRes.put("success", false);
+            jsonRes.put("msg", "删除失败!" + e );
         }
+        return jsonRes;
     }
 
     @Override
