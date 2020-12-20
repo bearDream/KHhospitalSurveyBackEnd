@@ -1,6 +1,13 @@
 package com.example.questionnaire.config;
 
+import com.example.questionnaire.dao.DepartmentDao;
+import com.example.questionnaire.dao.UserDao;
+import com.example.questionnaire.dao.UserDepartmentDao;
+import com.example.questionnaire.model.Department;
+import com.example.questionnaire.model.User;
+import com.example.questionnaire.model.UserDepartment;
 import com.example.questionnaire.service.impl.UserManagementServiceImpl;
+import net.sf.json.JSONObject;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -21,14 +28,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
 
 @Configuration
 public class MyWebSecurityConfig extends WebSecurityConfigurerAdapter {
     final
     UserManagementServiceImpl userManagementService;
+    final UserDepartmentDao userDepartmentDao;
+    final DepartmentDao departmentDao;
+    final UserDao userDao;
 
-    public MyWebSecurityConfig(UserManagementServiceImpl userManagementService) {
+    public MyWebSecurityConfig(UserManagementServiceImpl userManagementService, UserDepartmentDao userDepartmentDao, DepartmentDao departmentDao, UserDao userDao) {
         this.userManagementService = userManagementService;
+        this.userDepartmentDao = userDepartmentDao;
+        this.departmentDao = departmentDao;
+        this.userDao = userDao;
     }
 
     @Bean
@@ -53,11 +67,19 @@ public class MyWebSecurityConfig extends WebSecurityConfigurerAdapter {
                 new AuthenticationSuccessHandler() {
                     @Override
                     public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
+                        JSONObject jsonRes = new JSONObject();
                         Object principal = authentication.getPrincipal();
+                        String username = authentication.getName();
+                        User user = userDao.findDistinctByUsername(username);
+                        UserDepartment userDepartment = userDepartmentDao.findByUserId(user.getUserId());
+                        Department department = departmentDao.findDepartmentById(userDepartment.getId());
+                        jsonRes.put("user", user);
+                        jsonRes.put("userDepartment", userDepartment);
+                        jsonRes.put("department", department);
                         httpServletResponse.setContentType("application/json;charset=utf-8");
                         PrintWriter out = httpServletResponse.getWriter();
                         httpServletResponse.setStatus(200);
-                        out.write("success");
+                        out.write(jsonRes.toString());
                         out.flush();
                         out.close();
                     }
