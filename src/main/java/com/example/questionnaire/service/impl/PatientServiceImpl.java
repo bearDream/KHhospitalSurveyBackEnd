@@ -75,7 +75,6 @@ public class PatientServiceImpl implements PatientService {
 
     @Override
     public JSONObject listPatients(Integer index, Integer limit) {
-        LoginContextHolder.getContext().getUser().getDepartmentId()
         JSONObject jsonRes = new JSONObject();
         if(index == null){
             index = 1;
