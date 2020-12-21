@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 public class LoginContextSpringSecutiryImpl implements LoginContext  {
 
     @Override
-    public User getUser() {
+    public LoginUser getUser() {
         if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() instanceof String) {
             throw new AuthException(AuthExceptionEnum.NOT_LOGIN_ERROR);
         } else {

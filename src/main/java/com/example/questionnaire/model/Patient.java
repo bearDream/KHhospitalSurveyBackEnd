@@ -7,6 +7,7 @@ import java.util.Objects;
 @Table(name = "patient", schema = "hospital_survey", catalog = "")
 public class Patient {
     private int id;
+    private String patientId;
     private String patientName;
     private int gender;
     private String phone;
@@ -24,6 +25,16 @@ public class Patient {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    @Basic
+    @Column(name = "patient_id")
+    public String getPatientId() {
+        return patientId;
+    }
+
+    public void setPatientId(String patientId) {
+        this.patientId = patientId;
     }
 
     @Basic

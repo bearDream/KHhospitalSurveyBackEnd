@@ -1,5 +1,7 @@
 package com.example.questionnaire.service.impl;
 
+import com.example.questionnaire.auth.LoginContext;
+import com.example.questionnaire.auth.LoginContextHolder;
 import com.example.questionnaire.dao.PatientDao;
 import com.example.questionnaire.model.Patient;
 import com.example.questionnaire.service.PatientService;
@@ -73,6 +75,7 @@ public class PatientServiceImpl implements PatientService {
 
     @Override
     public JSONObject listPatients(Integer index, Integer limit) {
+        LoginContextHolder.getContext().getUser().getDepartmentId()
         JSONObject jsonRes = new JSONObject();
         if(index == null){
             index = 1;
@@ -84,7 +87,7 @@ public class PatientServiceImpl implements PatientService {
         double result = (double)count/(double)limit;
         int pageNum = (int)Math.ceil(result);
         if(list != null && count > 0){
-            jsonRes.put("allPatientsCount", count);//总条数
+            jsonRes.put("total", count);//总条数
             jsonRes.put("pageNum", pageNum);//总页数
             jsonRes.put("listPatients", list);
             jsonRes.put("success", true);

@@ -1,5 +1,6 @@
 package com.example.questionnaire.auth;
 
+import com.example.questionnaire.Beans.LoginUser;
 import com.example.questionnaire.model.User;
 
 /**
@@ -16,7 +17,7 @@ public interface LoginContext {
      * @author fengshuonan
      * @Date 2019/7/18 22:31
      */
-    User getUser();
+    LoginUser getUser();
 
     /**
      * 获取当前登录用户的token
