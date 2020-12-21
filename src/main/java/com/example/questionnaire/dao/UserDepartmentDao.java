@@ -13,4 +13,9 @@ public interface UserDepartmentDao extends JpaRepository<UserDepartment, Integer
 
     @Query(value = "select us.userId as userId, us.username as username from user_department ud left join user us on ud.userId = us.userId where ud.depId = ?1 ")
     List<Map<String, Object>> selectPatient(Integer depId);
+
+    @Override
+    <S extends UserDepartment> S save(S s);
+
+    UserDepartment findByUserId(Integer userId);
 }

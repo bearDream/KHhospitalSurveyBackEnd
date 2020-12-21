@@ -1,7 +1,6 @@
 package com.example.questionnaire.dao;
 
 import com.example.questionnaire.model.Department;
-import org.hibernate.annotations.SQLUpdate;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -9,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface DepartmentDao extends JpaRepository<Department, Integer> {
     List<Department> findAllByIdIs(Integer id);
@@ -29,4 +29,6 @@ public interface DepartmentDao extends JpaRepository<Department, Integer> {
 
     @Transactional
     int removeByParentId(@Param("parentId") Integer parentId);
+
+    Department findDepartmentById(Integer id);
 }
