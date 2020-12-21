@@ -5,6 +5,7 @@ import com.example.questionnaire.model.Patient;
 import com.example.questionnaire.service.PatientService;
 import net.sf.json.JSONObject;
 import org.springframework.data.repository.query.Param;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,6 +19,15 @@ public class PatientController {
 
     public PatientController(PatientService patientService) {
         this.patientService = patientService;
+    }
+
+    /**
+     * 分页获取patient表格
+     * */
+    @GetMapping("/api/patient/listPatients")
+    public JSONObject listPatients(@Param("index") Integer index, @Param("limit") Integer limit){
+
+        return null;
     }
 
     /**
