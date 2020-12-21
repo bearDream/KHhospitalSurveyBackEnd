@@ -7,6 +7,12 @@ mvn clean install
 
 点击main类运行即可，确保在局域网环境下
 
+## 分享问卷填写逻辑
+1. 首先调用tianxing api查询当前访问用户的IP
+2. 提交问卷时，将当前用户IP一起提交
+3. 若用户再次访问时，调用tianxing api查询当前用户ip
+4. 后台根据IP和问卷号筛选该用户是否已提交过问卷
+
 ## 需求集
 
 1. 问卷增加分数设置 (Task Operator: 张弛，年旗)
@@ -22,6 +28,6 @@ mvn clean install
 
 5. 问卷分享到外网的设置(Task Operator: 张弛)
 
-6. 首页显示的问卷应该是当前登陆用户所创建的，不能显示全量问卷，即简单权限隔离(Task operator: 何苗)
+6. 首页显示的问卷应该是当前登陆用户所创建的，不能显示全量问卷，即简单权限隔离(Task Operator: 何苗)
 
 7. 各种关联细节(Task Operator: 所有人)

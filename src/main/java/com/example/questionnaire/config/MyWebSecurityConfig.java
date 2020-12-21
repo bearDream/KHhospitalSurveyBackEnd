@@ -76,6 +76,7 @@ public class MyWebSecurityConfig extends WebSecurityConfigurerAdapter {
                         jsonRes.put("user", user);
                         jsonRes.put("userDepartment", userDepartment);
                         jsonRes.put("department", department);
+                        jsonRes.put("success", true);
                         httpServletResponse.setContentType("application/json;charset=utf-8");
                         PrintWriter out = httpServletResponse.getWriter();
                         httpServletResponse.setStatus(200);
@@ -89,8 +90,10 @@ public class MyWebSecurityConfig extends WebSecurityConfigurerAdapter {
             public void onAuthenticationFailure(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AuthenticationException e) throws IOException, ServletException {
                 httpServletResponse.setContentType("application/json;charset=utf-8");
                 PrintWriter out = httpServletResponse.getWriter();
+                JSONObject jsonRes = new JSONObject();
+                jsonRes.put("success", false);
                 httpServletResponse.setStatus(200);
-                out.write("wrong");
+                out.write(jsonRes.toString());
                 out.flush();
                 out.close();
             }
