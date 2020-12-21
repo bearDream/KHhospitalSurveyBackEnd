@@ -9,4 +9,6 @@ public interface PatientService {
     JSONObject addpatient(Patient patient);
 
     JSONObject delPatient(Integer id);
+
+    JSONObject listPatients(Integer index, Integer limit);
 }
