@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @RestController
 public class PatientController {
@@ -26,8 +27,7 @@ public class PatientController {
      * */
     @GetMapping("/api/patient/listPatients")
     public JSONObject listPatients(@Param("index") Integer index, @Param("limit") Integer limit){
-
-        return null;
+        return patientService.listPatients(index, limit);
     }
 
     /**

@@ -6,6 +6,8 @@ import com.example.questionnaire.service.PatientService;
 import net.sf.json.JSONObject;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PatientServiceImpl implements PatientService {
 
@@ -65,6 +67,27 @@ public class PatientServiceImpl implements PatientService {
             e.printStackTrace();
             jsonRes.put("success", false);
             jsonRes.put("msg", "删除失败" + e);
+        }
+        return jsonRes;
+    }
+
+    @Override
+    public JSONObject listPatients(Integer index, Integer limit) {
+        JSONObject jsonRes = new JSONObject();
+        if(index == null){
+            index = 1;
+        }
+        Integer pageNo = (index - 1) * limit;
+        List<Patient> list = patientDao.findAllByPage(pageNo, limit);
+        //查询病人总条数
+        int count = patientDao.findPatientsCount();
+        double result = (double)count/(double)limit;
+        int pageNum = (int)Math.ceil(result);
+        if(list != null && count > 0){
+            jsonRes.put("allPatientsCount", count);//总条数
+            jsonRes.put("pageNum", pageNum);//总页数
+            jsonRes.put("listPatients", list);
+            jsonRes.put("success", true);
         }
         return jsonRes;
     }
