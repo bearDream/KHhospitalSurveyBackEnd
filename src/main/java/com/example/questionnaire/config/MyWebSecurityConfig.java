@@ -29,6 +29,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 @Configuration
 public class MyWebSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -72,11 +74,18 @@ public class MyWebSecurityConfig extends WebSecurityConfigurerAdapter {
                         String username = authentication.getName();
                         User user = userDao.findDistinctByUsername(username);
                         UserDepartment userDepartment = userDepartmentDao.findByUserId(user.getUserId());
-                        Department department = departmentDao.findDepartmentById(userDepartment.getId());
-                        jsonRes.put("user", user);
-                        jsonRes.put("userDepartment", userDepartment);
-                        jsonRes.put("department", department);
+                        Department department = departmentDao.findDepartmentById(userDepartment.getDepId());
+                        Map<String, Object> map = new HashMap<>();
+                        map.put("userId", user.getUserId());
+                        map.put("email", user.getEmail());
+                        map.put("phoneNum", user.getPhoneNum());
+                        map.put("status", user.getStatus());
+                        map.put("username", user.getUsername());
+                        map.put("depId", userDepartment.getDepId());
+                        map.put("depName", department.getDepName());
+                        map.put("parentId", department.getParentId());
                         jsonRes.put("success", true);
+                        jsonRes.put("userInfo", map);
                         httpServletResponse.setContentType("application/json;charset=utf-8");
                         PrintWriter out = httpServletResponse.getWriter();
                         httpServletResponse.setStatus(200);
