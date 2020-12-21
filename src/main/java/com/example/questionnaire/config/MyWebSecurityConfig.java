@@ -1,5 +1,6 @@
 package com.example.questionnaire.config;
 
+import com.example.questionnaire.Beans.LoginUser;
 import com.example.questionnaire.dao.DepartmentDao;
 import com.example.questionnaire.dao.UserDao;
 import com.example.questionnaire.dao.UserDepartmentDao;
@@ -10,12 +11,15 @@ import com.example.questionnaire.service.impl.UserManagementServiceImpl;
 import net.sf.json.JSONObject;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
@@ -86,6 +90,13 @@ public class MyWebSecurityConfig extends WebSecurityConfigurerAdapter {
                         map.put("parentId", department.getParentId());
                         jsonRes.put("success", true);
                         jsonRes.put("userInfo", map);
+
+                        UserDetails userDetails = createUserDetails(map);
+                        //创建当前登录上下文
+                        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
+                                userDetails, null, userDetails.getAuthorities());
+                        SecurityContextHolder.getContext().setAuthentication(authentication);
+
                         httpServletResponse.setContentType("application/json;charset=utf-8");
                         PrintWriter out = httpServletResponse.getWriter();
                         httpServletResponse.setStatus(200);
@@ -117,5 +128,22 @@ public class MyWebSecurityConfig extends WebSecurityConfigurerAdapter {
             }
         })
                 .and().csrf().disable();
+    }
+
+    private UserDetails createUserDetails(Map<String, Object> user){
+        LoginUser loginUser = new LoginUser();
+
+        if (user == null) {
+            return loginUser;
+        }
+
+        loginUser.setUserId((Integer) user.get("userId"));
+        loginUser.setPhoneNum((Integer) user.get("phoneNum"));
+        loginUser.setDepartmentId((Integer) user.get("depId"));
+        loginUser.setDepartment((String) user.get("depName"));
+        loginUser.setUsername((String) user.get("username"));
+        loginUser.setEmail((String) user.get("email"));
+
+        return loginUser;
     }
 }
