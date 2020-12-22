@@ -33,9 +33,9 @@ public interface PatientDao extends JpaRepository<Patient, Integer> {
     @Query(value = "update patient set status = 1 where id = ?1", nativeQuery = true)
     int updateStatusById(@Param("id") Integer id);
 
-    @Query(value="select patient_id, id, gender, patient_name, phone, birthday, department_id, hospital_id, id_number, status from patient order by id desc limit ?1,?2", nativeQuery = true)
-    List<Patient> findAllByPage(@Param("index") Integer index, @Param("limit") Integer limit);
+    @Query(value="select patient_id, id, gender, patient_name, phone, birthday, department_id, hospital_id, id_number, status from patient where department_id = ?1 order by id desc limit ?2,?3", nativeQuery = true)
+    List<Patient> findAllByPage(@Param("departmentId") Integer departmentId, @Param("index") Integer index, @Param("limit") Integer limit);
 
-    @Query(value="select count(id) from patient ", nativeQuery = true)
-    int findPatientsCount();
+    @Query(value="select count(id) from patient where department_id = ?1 order by id desc", nativeQuery = true)
+    int findPatientsCount(@Param("departmentId") Integer departmentId);
 }

@@ -3,12 +3,17 @@ package com.example.questionnaire.config;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.context.annotation.DependsOn;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Service;
 
 /**
  * @Description 获取spring bean上下文
  * @Author zhangchi
  * @Date 12/21/20
  **/
+@Service
+@Lazy(false)
 public class SpringContextHolder implements ApplicationContextAware {
 
     private static ApplicationContext applicationContext;

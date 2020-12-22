@@ -2,6 +2,7 @@ package com.example.questionnaire.Beans;
 
 import com.example.questionnaire.model.User;
 import lombok.Data;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.io.Serializable;
@@ -16,5 +17,5 @@ public class LoginUser extends User implements UserDetails, Serializable {
 
     private Integer departmentId;
 
-    private String department;
+    private String depName;
 }

@@ -86,10 +86,14 @@ public class MyWebSecurityConfig extends WebSecurityConfigurerAdapter {
                         map.put("status", user.getStatus());
                         map.put("username", user.getUsername());
                         map.put("depId", userDepartment.getDepId());
-                        map.put("depName", department.getDepName());
-                        map.put("parentId", department.getParentId());
+                        if(department != null){
+                            map.put("depName", department.getDepName());
+                            map.put("parentId", department.getParentId());
+                        }
                         jsonRes.put("success", true);
                         jsonRes.put("userInfo", map);
+                        httpServletRequest.getSession().setAttribute("depId", userDepartment.getDepId());
+                        httpServletRequest.getSession().setAttribute("depName", department.getDepName());
 
                         UserDetails userDetails = createUserDetails(map);
                         //创建当前登录上下文
@@ -125,6 +129,7 @@ public class MyWebSecurityConfig extends WebSecurityConfigurerAdapter {
         }).logoutSuccessHandler(new LogoutSuccessHandler() {
             @Override
             public void onLogoutSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
+                httpServletRequest.getSession().invalidate();
             }
         })
                 .and().csrf().disable();
@@ -140,7 +145,7 @@ public class MyWebSecurityConfig extends WebSecurityConfigurerAdapter {
         loginUser.setUserId((Integer) user.get("userId"));
         loginUser.setPhoneNum((Integer) user.get("phoneNum"));
         loginUser.setDepartmentId((Integer) user.get("depId"));
-        loginUser.setDepartment((String) user.get("depName"));
+        loginUser.setDepName((String) user.get("depName"));
         loginUser.setUsername((String) user.get("username"));
         loginUser.setEmail((String) user.get("email"));
 
