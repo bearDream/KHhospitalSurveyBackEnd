@@ -6,6 +6,7 @@ import com.example.questionnaire.dao.PatientDao;
 import com.example.questionnaire.model.Patient;
 import com.example.questionnaire.service.PatientService;
 import net.sf.json.JSONObject;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -74,16 +75,16 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public JSONObject listPatients(Integer index, Integer limit) {
-        LoginContextHolder.getContext().getUser().getDepartmentId()
+    public JSONObject listPatients(Integer index, Integer limit, Integer departmentId) {
+     // Integer departmentId = LoginContextHolder.getContext().getUser().getDepartmentId();
         JSONObject jsonRes = new JSONObject();
         if(index == null){
             index = 1;
         }
         Integer pageNo = (index - 1) * limit;
-        List<Patient> list = patientDao.findAllByPage(pageNo, limit);
+        List<Patient> list = patientDao.findAllByPage(departmentId ,pageNo, limit);
         //查询病人总条数
-        int count = patientDao.findPatientsCount();
+        int count = patientDao.findPatientsCount(departmentId);
         double result = (double)count/(double)limit;
         int pageNum = (int)Math.ceil(result);
         if(list != null && count > 0){
