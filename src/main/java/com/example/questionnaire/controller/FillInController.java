@@ -5,15 +5,13 @@ import com.example.questionnaire.service.CreateService;
 import com.example.questionnaire.service.FillInService;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
-import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.servlet.http.HttpServletRequest;
 
 @RestController
 public class FillInController {
@@ -56,5 +54,10 @@ public class FillInController {
     @GetMapping("/api/fillin/getQuestionnaireOutline")
     public String getQuestionnaireOutline(@Param("questionnaireId") Integer questionnaireId) {
         return createService.getQuestionnaireOutline(questionnaireId);
+    }
+
+    @GetMapping("/api/fillin/getTitleAndScore")
+    public JSONObject getTitleAndScore(@Param("patientId") String patientId){
+        return answerScoreService.getTitleAndScore(patientId);
     }
 }

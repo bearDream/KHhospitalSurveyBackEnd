@@ -17,4 +17,6 @@ public class QuestionnaireIp {
     private Integer questionnaireId;
     private String ip;
     private Double score;
+    private Integer userId;
+    private String patientId;
 }

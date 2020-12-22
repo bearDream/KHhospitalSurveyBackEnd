@@ -6,13 +6,16 @@ import com.example.questionnaire.dao.QuestionnaireDao;
 import com.example.questionnaire.dao.QuestionnaireIpDao;
 import com.example.questionnaire.model.Answer;
 import com.example.questionnaire.model.Question;
+import com.example.questionnaire.model.Questionnaire;
 import com.example.questionnaire.model.QuestionnaireIp;
 import com.example.questionnaire.service.AnswerScoreService;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.SQLOutput;
 import java.util.*;
 
 /**
@@ -87,5 +90,25 @@ public class AnswerScoreServiceImpl implements AnswerScoreService {
             }
         }
         questionnaireIpDao.updateQuestionnaireScoreByQuestionnaireId(ip,questionnaireId,totalSocre);
+    }
+
+    /**
+     * 根据patientId查出questionnaireIp的list，然后循环list，利用问卷id查出问卷标题,和questionnaireIp中的score值一起存储到map中
+     * @return
+     */
+    @Override
+    public JSONObject getTitleAndScore(String patientId){
+        List<QuestionnaireIp> questionnaireIps = questionnaireIpDao.findAllByPatientId(patientId);
+        JSONObject jsonObject = new JSONObject();
+        for (QuestionnaireIp questionnaireIp:questionnaireIps){
+            Integer id = questionnaireIp.getQuestionnaireId();
+            Questionnaire questionnaire  = questionnaireDao.findByQuestionnaireId(id);
+            if (questionnaire != null) {
+                String title = questionnaire.getTitle();
+                Double score = questionnaireIp.getScore();
+                jsonObject.put(title, score);
+            }
+        }
+        return jsonObject;
     }
 }

@@ -13,6 +13,7 @@ import java.util.List;
 public interface QuestionnaireIpDao extends JpaRepository<QuestionnaireIp, Integer> {
     List<QuestionnaireIp> findAllByQuestionnaireIdAndIp(Integer questionnaireId, String ip);
 
+    List<QuestionnaireIp> findAllByPatientId(String patientId);
     @Transactional
     @Modifying
     @Query("update questionnaire_ip set score=:totalScore where questionnaireId=:questionnaireId and ip = :ip")
