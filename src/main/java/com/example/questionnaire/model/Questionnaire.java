@@ -21,4 +21,5 @@ public class Questionnaire {
     private Integer depId;
     @Column(columnDefinition = "TEXT")
     private String description;
+    private Integer userId;
 }

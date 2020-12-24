@@ -10,6 +10,7 @@ import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
@@ -23,8 +24,9 @@ public class AnalysisController {
     }
 
     @GetMapping("/api/getQuestionnaires")
-    public String getQuestionnaires(Authentication authentication) {
-        return analysisService.getQuestionnairesByUsername(authentication.getName());
+    public String getQuestionnaires(Authentication authentication, HttpServletRequest request) {
+        Integer userId = Integer.valueOf(request.getSession().getAttribute("userId") + "") ;
+        return analysisService.getQuestionnairesByUsername(userId);
     }
 
     @GetMapping("/api/getQuestionValueList")

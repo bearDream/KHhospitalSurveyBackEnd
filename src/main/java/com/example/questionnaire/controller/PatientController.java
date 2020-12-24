@@ -51,4 +51,9 @@ public class PatientController {
         JSONObject jsonResult = patientService.delPatient(id);
         return jsonResult;
     }
+
+    @PostMapping("/api/patient/getPatientList")
+    public JSONObject getPatientList(@RequestBody Patient patient){
+        return patientService.getPatientList(patient);
+    }
 }

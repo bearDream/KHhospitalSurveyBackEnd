@@ -95,4 +95,23 @@ public class PatientServiceImpl implements PatientService {
         }
         return jsonRes;
     }
+
+    @Override
+    public JSONObject getPatientList(Patient patient) {
+        JSONObject jsonRes = new JSONObject();
+        List<Patient> lists = null;
+        if(patient.getPatientName() == null || patient.getPatientName() == ""){
+             lists = patientDao.getPatientListByIdNumber(patient.getDepartmentId(), patient.getIdNumber());
+        }else{
+             lists = patientDao.getPatientListByName(patient.getDepartmentId(), patient.getPatientName());
+        }
+        if(lists != null){
+            jsonRes.put("success", true);
+            jsonRes.put("patients", lists);
+        }else{
+            jsonRes.put("success", true);
+            jsonRes.put("msg", "暂无查询的数据！");
+        }
+        return jsonRes;
+    }
 }

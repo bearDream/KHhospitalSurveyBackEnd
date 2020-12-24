@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 public interface QuestionnaireDao extends JpaRepository<Questionnaire, Integer> {
-    List<Questionnaire> findAllByUsername(String username);
+    List<Questionnaire> findAllByUserId(Integer userId);
     Questionnaire findByQuestionnaireId(Integer questionnaireId);
     @Modifying
     @Transactional

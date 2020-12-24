@@ -38,4 +38,10 @@ public interface PatientDao extends JpaRepository<Patient, Integer> {
 
     @Query(value="select count(id) from patient where department_id = ?1 order by id desc", nativeQuery = true)
     int findPatientsCount(@Param("departmentId") Integer departmentId);
+
+    @Query(value="select patient_id, id, gender, patient_name, phone, birthday, department_id, hospital_id, id_number, status from patient where department_id = ?1 and patient_name LIKE %?2% order by id desc", nativeQuery = true)
+    List<Patient> getPatientListByName(Integer departmentId, String patientName);
+
+    @Query(value="select patient_id, id, gender, patient_name, phone, birthday, department_id, hospital_id, id_number, status from patient where department_id = ?1 and id_number = ?2 order by id desc", nativeQuery = true)
+    List<Patient> getPatientListByIdNumber(Integer departmentId, String idNumber);
 }
