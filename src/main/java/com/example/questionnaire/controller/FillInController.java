@@ -40,8 +40,9 @@ public class FillInController {
     public String submitAnswer(@Param("questionnaireId") Integer questionnaireId, @RequestBody String answer) {
         String answerListJson = gson.fromJson(answer, JsonObject.class).get("answerList").toString();
         String ip = gson.fromJson(answer, JsonObject.class).get("ip").getAsString();
+        String patientId = gson.fromJson(answer, JsonObject.class).get("patientId").getAsString();
         if (!fillInService.checkAlreadySubmit(questionnaireId, ip))
-            fillInService.submitAnswer(questionnaireId, answerListJson, ip);
+            fillInService.submitAnswer(questionnaireId, answerListJson, ip, patientId);
         answerScoreService.score(ip,questionnaireId);
         return "";
     }

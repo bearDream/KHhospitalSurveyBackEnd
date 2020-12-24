@@ -36,12 +36,13 @@ public class FillInServiceImpl implements FillInService {
 
     @Override
     @Transactional
-    public void submitAnswer(Integer questionnaireId, String answerListJson, String ip) {
+    public void submitAnswer(Integer questionnaireId, String answerListJson, String ip, String patientId) {
 
         // 记录ip防止重复填写
         QuestionnaireIp questionnaireIp = new QuestionnaireIp();
         questionnaireIp.setIp(ip);
         questionnaireIp.setQuestionnaireId(questionnaireId);
+        questionnaireIp.setPatientId(patientId);
         questionnaireIpDao.save(questionnaireIp);
 
         // 如果已经关闭就拒绝

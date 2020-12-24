@@ -11,4 +11,6 @@ public interface PatientService {
     JSONObject delPatient(Integer id);
 
     JSONObject listPatients(Integer index, Integer limit, Integer departmentId);
+
+    JSONObject getPatientList(Patient patient);
 }
