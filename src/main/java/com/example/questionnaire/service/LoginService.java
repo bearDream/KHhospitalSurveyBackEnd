@@ -1,37 +1,62 @@
 package com.example.questionnaire.service;
 
 import com.example.questionnaire.dao.UserDao;
+import com.example.questionnaire.dao.UserDepartmentDao;
 import com.example.questionnaire.model.User;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.questionnaire.model.UserDepartment;
+import net.sf.json.JSONObject;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Service
 public class LoginService {
     final
     UserDao userDao;
+    final UserDepartmentDao userDepartmentDao;
 
-    public LoginService(UserDao userDao) {
+    public LoginService(UserDao userDao, UserDepartmentDao userDepartmentDao) {
         this.userDao = userDao;
+        this.userDepartmentDao = userDepartmentDao;
     }
 
-    public String reg(String username, String password) {
+    public JSONObject reg(User user, Integer depId) {
+        JSONObject jsonRes = new JSONObject();
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(10);
-        String encodePassword = encoder.encode(password);
+        String encodePassword = encoder.encode(user.getPassword());
 
-        if(userDao.findDistinctByUsername(username)!=null){
-            return "usernameAlready";
+        if(userDao.findDistinctByUsername(user.getUsername())!=null){
+            jsonRes.put("success", false);
+            jsonRes.put("msg", "用户名已存在！");
+            return jsonRes;
         }
 
-        User user = new User();
         user.setCreateTime(new Date());
-        user.setUsername(username);
+        user.setStatus("0");
         user.setPassword(encodePassword);
-        userDao.save(user);
-
-        return "success";
+        User userRes = userDao.save(user);
+        if(userRes != null){
+            UserDepartment userDepartment = new UserDepartment();
+            LocalDateTime time = LocalDateTime.now();
+            userDepartment.setUserId(userRes.getUserId());
+            userDepartment.setDepId(depId);
+            userDepartment.setCreatedTime(time);
+            UserDepartment userDepRes = userDepartmentDao.save(userDepartment);
+            if(userDepRes != null){
+                jsonRes.put("success", true);
+                jsonRes.put("msg", "注册成功！");
+            }else{
+                userDao.deleteById(userRes.getUserId());
+                jsonRes.put("success", false);
+                jsonRes.put("msg", "注册失败！");
+            }
+        }else{
+            jsonRes.put("success", false);
+            jsonRes.put("msg", "注册失败！");
+        }
+        return jsonRes;
     }
 
     public String login(String username, String password) {
