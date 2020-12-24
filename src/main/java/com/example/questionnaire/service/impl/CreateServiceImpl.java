@@ -102,8 +102,10 @@ public class CreateServiceImpl implements CreateService {
 
             resList.add(oneRes);
         }
+        String depId = questionnaireDao.findByQuestionnaireId(questionnaireId).getDepId().toString();
         JsonObject res = new JsonObject();
         res.add("questionList", resList);
+        res.addProperty("departmentId", depId);
         return gson.toJson(res);
     }
 
