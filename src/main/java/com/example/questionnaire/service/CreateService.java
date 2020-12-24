@@ -1,8 +1,10 @@
 package com.example.questionnaire.service;
 
+import javax.servlet.http.HttpServletRequest;
+
 public interface CreateService {
 
-    String createQuestionnaire(String username);
+    String createQuestionnaire(String username, HttpServletRequest httpServletRequest);
 
     String deleteQuestionnaire(Integer questionnaireId);
 

@@ -93,8 +93,8 @@ public class AnswerScoreServiceImpl implements AnswerScoreService {
     }
 
     /**
-     * 根据patientId查出questionnaireIp的list，然后循环list，利用问卷id查出问卷标题,和questionnaireIp中的score值一起存储到map中
-     * @return
+     * 根据patientId查出questionnaireIp的list，然后循环list，利用问卷id查出问卷标题
+     * @return questionnaireIp中的score值和questionnaire中的title值一起存储到JSONObject中
      */
     @Override
     public JSONObject getTitleAndScore(String patientId){

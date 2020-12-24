@@ -3,12 +3,15 @@ package com.example.questionnaire.controller;
 import com.example.questionnaire.service.CreateService;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.sun.javaws.IconUtil;
 import org.springframework.data.repository.query.Param;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.HttpServletRequest;
 
 @RestController
 public class CreateController {
@@ -22,8 +25,8 @@ public class CreateController {
     }
 
     @GetMapping("/api/createQuestionnaire")
-    public String createQuestionnaire(Authentication authentication) {
-        return createService.createQuestionnaire(authentication.getName());
+    public String createQuestionnaire(Authentication authentication, HttpServletRequest httpServletRequest) {
+        return createService.createQuestionnaire(authentication.getName(), httpServletRequest);
     }
 
     @PostMapping("/api/saveQuestionnaire")

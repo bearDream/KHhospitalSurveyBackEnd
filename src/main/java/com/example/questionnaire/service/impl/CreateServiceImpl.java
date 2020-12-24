@@ -13,6 +13,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.List;
 
@@ -32,13 +33,15 @@ public class CreateServiceImpl implements CreateService {
     }
 
     @Override
-    public String createQuestionnaire(String username) {
+    public String createQuestionnaire(String username, HttpServletRequest httpServletRequest) {
         Questionnaire newQuestionnaire = new Questionnaire();
+        newQuestionnaire.setUsername(username);
         newQuestionnaire.setUsername(username);
         newQuestionnaire.setCreateTime(new Date());
         newQuestionnaire.setStatus("editing");
         newQuestionnaire.setTitle("请输入标题");
         newQuestionnaire.setDescription("请输入描述");
+        newQuestionnaire.setDepId((Integer) httpServletRequest.getSession().getAttribute("depId"));
         questionnaireDao.save(newQuestionnaire);
 
         JsonObject res = new JsonObject();

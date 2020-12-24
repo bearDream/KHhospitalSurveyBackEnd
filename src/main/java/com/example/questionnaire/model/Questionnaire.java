@@ -18,6 +18,7 @@ public class Questionnaire {
     private String status;
     private String title;
     private Integer fillCount;
+    private Integer depId;
     @Column(columnDefinition = "TEXT")
     private String description;
 }
