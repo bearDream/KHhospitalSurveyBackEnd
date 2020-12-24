@@ -94,7 +94,7 @@ public class MyWebSecurityConfig extends WebSecurityConfigurerAdapter {
                         jsonRes.put("userInfo", map);
                         httpServletRequest.getSession().setAttribute("depId", userDepartment.getDepId());
                         httpServletRequest.getSession().setAttribute("depName", department.getDepName());
-
+                        httpServletRequest.getSession().setAttribute("userId", user.getUserId());
                         UserDetails userDetails = createUserDetails(map);
                         //创建当前登录上下文
                         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(

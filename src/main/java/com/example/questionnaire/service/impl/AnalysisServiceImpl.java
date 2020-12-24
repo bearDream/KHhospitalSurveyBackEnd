@@ -33,9 +33,9 @@ public class AnalysisServiceImpl implements AnalysisService {
     }
 
     @Override
-    public String getQuestionnairesByUsername(String username) {
+    public String getQuestionnairesByUsername(Integer userId) {
         JsonObject res = new JsonObject();
-        res.add("questionnaires", gson.fromJson(gson.toJson(questionnaireDao.findAllByUsername(username)), JsonArray.class));
+        res.add("questionnaires", gson.fromJson(gson.toJson(questionnaireDao.findAllByUserId(userId)), JsonArray.class));
         return gson.toJson(res);
     }
 

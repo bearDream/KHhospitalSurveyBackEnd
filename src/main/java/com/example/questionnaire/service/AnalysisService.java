@@ -6,7 +6,7 @@ import org.springframework.security.core.Authentication;
 import java.util.List;
 
 public interface AnalysisService {
-    String getQuestionnairesByUsername(String username);
+    String getQuestionnairesByUsername(Integer userId);
 
     String getQuestionnaireById(Integer questionnaireId);
 
