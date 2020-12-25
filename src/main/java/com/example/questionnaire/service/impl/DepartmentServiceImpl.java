@@ -114,4 +114,18 @@ public class DepartmentServiceImpl implements DepartmentService {
     public int updateDepartment(Department department) {
         return departmentDao.updateDepartment(department);
     }
+
+    @Override
+    public JSONObject departmentList() {
+        JSONObject jsonRes = new JSONObject();
+        List<Department> departmentLists = departmentDao.selectAllDepartment();
+        if(departmentLists != null){
+            jsonRes.put("depList", departmentLists);
+            jsonRes.put("success", true);
+        }else{
+            jsonRes.put("success", false);
+            jsonRes.put("msg", "科室不存在！");
+        }
+        return jsonRes;
+    }
 }

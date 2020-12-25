@@ -66,4 +66,12 @@ public class DepartmentController {
         }
         return jsonRes;
     }
+
+    /**
+     * 查询所有科室
+     * */
+    @GetMapping("/api/department/getDepartmentLists")
+    public JSONObject getDepartmentLists(){
+        return departmentService.departmentList();
+    }
 }

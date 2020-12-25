@@ -16,4 +16,6 @@ public interface DepartmentService {
     JSONObject addDepartment(Department department);
 
     int updateDepartment(Department department);
+
+    JSONObject departmentList();
 }
