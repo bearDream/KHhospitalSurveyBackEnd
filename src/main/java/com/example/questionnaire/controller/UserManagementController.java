@@ -31,7 +31,7 @@ public class UserManagementController {
 
     //注册用户
     @PostMapping("/api/register")
-    public JSONObject register(@RequestBody User user, @Param("depId") Integer depId) {
+    public JSONObject register(@Param("depId") Integer depId, @RequestBody User user) {
         return loginService.reg(user, depId);
     }
 
