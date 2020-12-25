@@ -14,12 +14,12 @@ import java.util.Map;
 @Component
 public class MenuTreeUtil {
     //已经被buildTree的list集合
-    private List<Department> menuCommon;
+//    private List<Department> menuCommon;
 
     public List<Object> menuList(List<Department> menu){
         //返回给前端的NewTree List集合
         List<Object> list = new ArrayList<Object>();
-        this.menuCommon = menu;
+//        this.menuCommon = menu;
 
         // 通过遍历menu，找到父节点为0的节点，它是顶级父节点
         // 然后调用menuChild，递归遍历所有子节点
@@ -29,19 +29,17 @@ public class MenuTreeUtil {
                 mapArr.put("id", menu.get(i).getId());
                 mapArr.put("depName", menu.get(i).getDepName());
                 mapArr.put("parentId", menu.get(i).getParentId());
-
                 //遍历开始
                 //mapArr.put("level", i + 1);
-                //Integer level = 0;
-                //level = i + 2;
-                mapArr.put("childList", menuChild(menu.get(i).getId()));
+                int level = i + 1;
+                mapArr.put("childList", menuChild(menu, menu.get(i).getId()));
                 list.add(mapArr);
             }
         }
         return list;
     }
 
-    private List<?> menuChild(Integer id){
+    private List<?> menuChild(List<Department> menuCommon, Integer id){
         List<Object> lists = new ArrayList<Object>();
         //继续遍历menu
         for(int i = 0; i < menuCommon.size(); i++){
@@ -53,10 +51,12 @@ public class MenuTreeUtil {
                 childArray.put("parentId", menuCommon.get(i).getParentId());
                 //向下递归
                 //childArray.put("level", level);
-                childArray.put("childList", menuChild(menuCommon.get(i).getId()));
+                childArray.put("childList", menuChild(menuCommon, menuCommon.get(i).getId()));
                 lists.add(childArray);
             }
         }
         return lists;
     }
+
 }
+

@@ -32,9 +32,11 @@ public class UserManagementServiceImpl implements UserDetailsService, UserManage
     @Override
     public JSONObject updateUser(User user) {
         JSONObject jsonRes = new JSONObject();
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(10);
-        String encodePassword = encoder.encode(user.getPassword());
-        user.setPassword(encodePassword);
+        if(user.getPassword() != null && user.getPassword() != ""){
+            BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(10);
+            String encodePassword = encoder.encode(user.getPassword());
+            user.setPassword(encodePassword);
+        }
         int count = userDao.updateUser(user);
         if(count > 0){
             jsonRes.put("success", true);

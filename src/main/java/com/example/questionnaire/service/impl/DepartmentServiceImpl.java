@@ -3,6 +3,7 @@ package com.example.questionnaire.service.impl;
 import com.example.questionnaire.dao.DepartmentDao;
 import com.example.questionnaire.model.Department;
 import com.example.questionnaire.service.DepartmentService;
+import com.example.questionnaire.utils.DepartmentUtil;
 import com.example.questionnaire.utils.MenuTreeUtil;
 import net.sf.json.JSON;
 import net.sf.json.JSONObject;
@@ -18,6 +19,9 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Resource
     MenuTreeUtil menuTreeUtil;
+
+    @Resource
+    DepartmentUtil departmentUtil;
 
     public DepartmentServiceImpl(DepartmentDao departmentDao) {
         this.departmentDao = departmentDao;
@@ -120,7 +124,9 @@ public class DepartmentServiceImpl implements DepartmentService {
         JSONObject jsonRes = new JSONObject();
         List<Department> departmentLists = departmentDao.findAll();
         if(departmentLists != null){
-            jsonRes.put("depList", departmentLists);
+            List<Object> depLists = departmentUtil.getDepAll(departmentLists, 0, 1);
+
+            jsonRes.put("depList", depLists);
             jsonRes.put("success", true);
         }else{
             jsonRes.put("success", false);
