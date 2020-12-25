@@ -9,6 +9,7 @@ import net.sf.json.JSONObject;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,6 +32,9 @@ public class UserManagementServiceImpl implements UserDetailsService, UserManage
     @Override
     public JSONObject updateUser(User user) {
         JSONObject jsonRes = new JSONObject();
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(10);
+        String encodePassword = encoder.encode(user.getPassword());
+        user.setPassword(encodePassword);
         int count = userDao.updateUser(user);
         if(count > 0){
             jsonRes.put("success", true);
