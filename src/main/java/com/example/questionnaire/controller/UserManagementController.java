@@ -58,8 +58,8 @@ public class UserManagementController {
 
     //修改用户
     @PostMapping("/api/updateUser")
-    public JSONObject updateUser(@RequestBody User user){
-        return userManagementService.updateUser(user);
+    public JSONObject updateUser(@RequestParam("depId") Integer depId, @RequestBody User user){
+        return userManagementService.updateUser(depId, user);
     }
 
 }

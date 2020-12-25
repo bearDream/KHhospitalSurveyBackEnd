@@ -19,9 +19,11 @@ import java.util.Map;
 public class UserManagementServiceImpl implements UserDetailsService, UserManagementService {
     final
     UserDao userDao;
+    final UserDepartmentDao userDepartmentDao;
 
-    public UserManagementServiceImpl(UserDao userDao, UserDepartmentDao userDepartmentDao) {
+    public UserManagementServiceImpl(UserDao userDao, UserDepartmentDao userDepartmentDao, UserDepartmentDao userDepartmentDao1) {
         this.userDao = userDao;
+        this.userDepartmentDao = userDepartmentDao1;
     }
 
     @Override
@@ -30,7 +32,7 @@ public class UserManagementServiceImpl implements UserDetailsService, UserManage
     }
 
     @Override
-    public JSONObject updateUser(User user) {
+    public JSONObject updateUser(Integer depId, User user) {
         JSONObject jsonRes = new JSONObject();
         if(user.getPassword() != null && user.getPassword() != ""){
             BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(10);
@@ -38,6 +40,12 @@ public class UserManagementServiceImpl implements UserDetailsService, UserManage
             user.setPassword(encodePassword);
         }
         int count = userDao.updateUser(user);
+        if(depId != null){
+            UserDepartment userDepartment = new UserDepartment();
+            userDepartment.setDepId(depId);
+            userDepartment.setUserId(user.getUserId());
+            userDepartmentDao.updateUserDepartment(userDepartment);
+        }
         if(count > 0){
             jsonRes.put("success", true);
             jsonRes.put("msg", "修改成功！");

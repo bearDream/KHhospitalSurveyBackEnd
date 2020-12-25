@@ -11,7 +11,7 @@ import java.util.Map;
 public interface UserManagementService {
 
     //修改用户
-    JSONObject updateUser(User user);
+    JSONObject updateUser(Integer depId, User user);
 
     //删除用户
     int delUser(Integer id);
