@@ -118,7 +118,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Override
     public JSONObject departmentList() {
         JSONObject jsonRes = new JSONObject();
-        List<Department> departmentLists = departmentDao.selectAllDepartment();
+        List<Department> departmentLists = departmentDao.findAll();
         if(departmentLists != null){
             jsonRes.put("depList", departmentLists);
             jsonRes.put("success", true);

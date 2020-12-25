@@ -13,9 +13,6 @@ import java.util.Optional;
 public interface DepartmentDao extends JpaRepository<Department, Integer> {
     List<Department> findAllByIdIs(Integer id);
 
-    @Query(value="select id, dep_name, parent_id from department", nativeQuery = true)
-    List<Department> selectAllDepartment();
-
     @Override
     List<Department> findAll();
 
