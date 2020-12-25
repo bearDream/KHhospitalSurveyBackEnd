@@ -17,8 +17,8 @@ public interface UserDao extends JpaRepository<User, Integer> {
     @Query(value = "update user set email = :#{#user.email}, phone_num = :#{#user.phoneNum}, username = :#{#user.username} where user_id = :#{#user.userId}", nativeQuery = true)
     int updateUser(User user);
 
-    @Query(value="select u.user_id as userId, u.email, u.phone_num as phoneNum, u.username, ud.dep_id as depId from user u left join user_department ud on u.user_id = ud.user_id where u.status = '0' order by u.user_id desc", nativeQuery = true)
-    List<Map<String, Object>> userLists();
+    @Query(value="select u.user_id as userId, ifnull(u.email, '') as email , ifnull(u.phone_num, '') as phoneNum, u.username, ud.dep_id as depId from user u left join user_department ud on u.user_id = ud.user_id where u.status = '0' order by u.user_id desc", nativeQuery = true)
+    List<Map<String, String>> userLists();
 
     @Modifying
     @Transactional

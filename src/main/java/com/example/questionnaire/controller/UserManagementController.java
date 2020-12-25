@@ -38,11 +38,7 @@ public class UserManagementController {
     //查询用户
     @GetMapping("/api/getUserLists")
     public JSONObject getUserLists(){
-        JSONObject jsonRes = new JSONObject();
-        List<Map<String, Object>> patientLists = userManagementService.userLists();
-        jsonRes.put("patientLists", patientLists);
-        jsonRes.put("success", true);
-        return jsonRes;
+        return userManagementService.userLists();
     }
 
     //删除用户

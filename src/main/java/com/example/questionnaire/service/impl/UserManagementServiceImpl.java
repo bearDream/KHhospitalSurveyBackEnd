@@ -48,7 +48,11 @@ public class UserManagementServiceImpl implements UserDetailsService, UserManage
     }
 
     @Override
-    public List<Map<String, Object>> userLists() {
-        return userDao.userLists();
+    public JSONObject userLists() {
+        JSONObject jsonRes = new JSONObject();
+        List<Map<String, String>> patientLists = userDao.userLists();
+        jsonRes.put("patientLists", patientLists);
+        jsonRes.put("success", true);
+        return jsonRes;
     }
 }

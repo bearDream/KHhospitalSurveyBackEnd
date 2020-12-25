@@ -17,5 +17,5 @@ public interface UserManagementService {
     int delUser(Integer id);
 
     //查询用户
-    List<Map<String, Object>> userLists();
+    JSONObject userLists();
 }
