@@ -143,7 +143,7 @@ public class MyWebSecurityConfig extends WebSecurityConfigurerAdapter {
         }
 
         loginUser.setUserId((Integer) user.get("userId"));
-        loginUser.setPhoneNum((Integer) user.get("phoneNum"));
+        loginUser.setPhoneNum((String)user.get("phoneNum"));
         loginUser.setDepartmentId((Integer) user.get("depId"));
         loginUser.setDepName((String) user.get("depName"));
         loginUser.setUsername((String) user.get("username"));
