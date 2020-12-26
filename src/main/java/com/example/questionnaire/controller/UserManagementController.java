@@ -61,5 +61,4 @@ public class UserManagementController {
     public JSONObject updateUser(@RequestParam("depId") Integer depId, @RequestBody User user){
         return userManagementService.updateUser(depId, user);
     }
-
 }
