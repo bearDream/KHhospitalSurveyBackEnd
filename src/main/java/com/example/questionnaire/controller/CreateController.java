@@ -3,7 +3,6 @@ package com.example.questionnaire.controller;
 import com.example.questionnaire.service.CreateService;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import com.sun.javaws.IconUtil;
 import org.springframework.data.repository.query.Param;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
