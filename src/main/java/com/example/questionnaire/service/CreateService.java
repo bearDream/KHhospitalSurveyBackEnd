@@ -4,7 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 
 public interface CreateService {
 
-    String createQuestionnaire(String username, HttpServletRequest httpServletRequest);
+    String createQuestionnaire(Object user, HttpServletRequest httpServletRequest);
 
     String deleteQuestionnaire(Integer questionnaireId);
 

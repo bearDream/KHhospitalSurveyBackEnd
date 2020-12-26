@@ -26,7 +26,7 @@ public class CreateController {
 
     @GetMapping("/api/createQuestionnaire")
     public String createQuestionnaire(Authentication authentication, HttpServletRequest httpServletRequest) {
-        return createService.createQuestionnaire(authentication.getName(), httpServletRequest);
+        return createService.createQuestionnaire(authentication.getPrincipal(), httpServletRequest);
     }
 
     @PostMapping("/api/saveQuestionnaire")

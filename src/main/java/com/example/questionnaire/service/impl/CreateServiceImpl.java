@@ -4,6 +4,7 @@ import com.example.questionnaire.dao.QuestionDao;
 import com.example.questionnaire.dao.QuestionnaireDao;
 import com.example.questionnaire.model.Question;
 import com.example.questionnaire.model.Questionnaire;
+import com.example.questionnaire.model.User;
 import com.example.questionnaire.service.CreateService;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -33,21 +34,28 @@ public class CreateServiceImpl implements CreateService {
     }
 
     @Override
-    public String createQuestionnaire(String username, HttpServletRequest httpServletRequest) {
-        Questionnaire newQuestionnaire = new Questionnaire();
-        newQuestionnaire.setUsername(username);
-        newQuestionnaire.setUsername(username);
-        newQuestionnaire.setCreateTime(new Date());
-        newQuestionnaire.setStatus("editing");
-        newQuestionnaire.setTitle("请输入标题");
-        newQuestionnaire.setDescription("请输入描述");
-        newQuestionnaire.setDepId((Integer) httpServletRequest.getSession().getAttribute("depId"));
-        questionnaireDao.save(newQuestionnaire);
+    public String createQuestionnaire(Object userPrincipal, HttpServletRequest httpServletRequest) {
+        try {
+            User user = (User) userPrincipal;
+            Questionnaire newQuestionnaire = new Questionnaire();
+            newQuestionnaire.setUserId(user.getUserId());
+            newQuestionnaire.setUsername(user.getUsername());
+            newQuestionnaire.setCreateTime(new Date());
+            newQuestionnaire.setStatus("editing");
+            newQuestionnaire.setTitle("请输入标题");
+            newQuestionnaire.setDescription("请输入描述");
+            newQuestionnaire.setDepId((Integer) httpServletRequest.getSession().getAttribute("depId"));
+            questionnaireDao.save(newQuestionnaire);
 
-        JsonObject res = new JsonObject();
-        res.addProperty("id", newQuestionnaire.getQuestionnaireId());
+            JsonObject res = new JsonObject();
+            res.addProperty("id", newQuestionnaire.getQuestionnaireId());
 
-        return gson.toJson(res);
+            return gson.toJson(res);
+        }catch (Exception e){
+            JsonObject res = new JsonObject();
+            res.addProperty("success", false);
+            return gson.toJson(res);
+        }
     }
 
     @Override
